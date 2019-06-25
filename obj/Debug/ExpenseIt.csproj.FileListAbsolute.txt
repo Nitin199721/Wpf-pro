@@ -17,3 +17,4 @@ C:\Users\int127\source\repos\ExpenseIt\obj\Debug\ExpenseIt.csproj.GenerateResour
 C:\Users\int127\source\repos\ExpenseIt\obj\Debug\ExpenseIt.csproj.CoreCompileInputs.cache
 C:\Users\int127\source\repos\ExpenseIt\obj\Debug\ExpenseIt.exe
 C:\Users\int127\source\repos\ExpenseIt\obj\Debug\ExpenseIt.pdb
+C:\Users\int127\source\repos\ExpenseIt\obj\Debug\App.baml

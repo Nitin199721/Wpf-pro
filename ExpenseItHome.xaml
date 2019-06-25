@@ -9,33 +9,69 @@
       Title="ExpenseIt-Home">
 
     <Grid Margin="10,0,10,10">
+        <Grid.Resources>
+            <!--Expense Report Data-->
+            <XmlDataProvider x:Key="ExpenseDataSource" XPath="Expenses">
+                <x:XData>
+                    <Expenses xmln="">
+                        <Person Name="Mike" Department="Legal">
+                            <Expense ExpenseType="Lunch" ExpenseAmount="50"/>
+                            <Expense ExpenseType="Transportation" ExpenseAmount="50"/>
+                        </Person>
+                        <Persson Name="Lisa" Department="Marketing">
+                            <Expense ExpenseType="Document printing" ExpenseAmount="50"/>
+                            <Expense ExpenseType="Gift" ExpenseAmount="125"/>
+                        </Persson>
+                        <Person Name="John" Department="Engineering">
+                            <Expense ExpenseType="Magazine subscription" ExpenseAmount="50"/>
+                            <Expense ExpenseType="New machine" ExpenseAmount="600" />
+                            <Expense ExpenseType="Software" ExpenseAmount="500" />
+                        </Person>
+                        <Person Name="Mary" Department="Finance">
+                            <Expense ExpenseType="Dinner" ExpenseAmount="100" />
+                        </Person>
+                    </Expenses>
+                </x:XData>
+            </XmlDataProvider>
+            <!-- Name item template -->
+            <DataTemplate x:Key="nameItemTemplate">
+                <Label Content="{Binding XPath=@Name}"/>
+            </DataTemplate>
+        </Grid.Resources>
+        <Grid.Background>
+            <ImageBrush ImageSource="watermark.png"  />
+        </Grid.Background>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="230" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
             <RowDefinition />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" VerticalAlignment="Center" FontFamily="Trebuchet MS" FontWeight="Bold"
-        <!--People list-->
-        <Border Grid.Column="1" Grid.Row="1" Height="35" Padding="5" Background="#4e87d4">
-            <Label VerticalAlignment="Center" Foreground="white">Names</Label>
-          
+
+        <!-- People list -->
+
+        <Label Grid.Column="1" Style="{StaticResource headerTextStyle}" >
+            View Expense Report
+        </Label>
+
+        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource listHeaderStyle}">
+            <Label Style="{StaticResource listHeaderTextStyle}">Names</Label>
         </Border>
-        <ListBox x:Name="peopleListBox" Grid.Column="1" Grid.Row="2">
+        <ListBox Name="peopleListBox" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Source={StaticResource ExpenseDataSource},XPath=Person}" ItemTemplate="{StaticResource nameItemTemplate}" >
             <ListBoxItem>Mike</ListBoxItem>
-            <ListBoxItem>lisa</ListBoxItem>
-            <ListBoxItem>john</ListBoxItem>
+            <ListBoxItem>Lisa</ListBoxItem>
+            <ListBoxItem>John</ListBoxItem>
             <ListBoxItem>Mary</ListBoxItem>
         </ListBox>
-        <!--view report button-->
-        <Button Grid.Column="1" Grid.Row="3" Margin="0,10,0,0" Width="125" Height="25" HorizontalAlignment="Right">View</Button>
-        <Grid.Background>
-            <ImageBrush ImageSource="watermark.png"/>
-        </Grid.Background>
-    
+
+        <!-- View report button -->
+        <Button Grid.Column="1" Grid.Row="3" Click="Button_Click" Style="{StaticResource buttonStyle}">View</Button>
+
     </Grid>
 </Page>
