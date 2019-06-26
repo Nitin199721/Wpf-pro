@@ -9,6 +9,17 @@
       Title="ExpenseIt-view Expense">
 
     <Grid>
+        <!--Templates to display expense report data-->
+        <Grid.Resources>
+            <!-- Reason item template -->
+            <DataTemplate x:Key="typeItemTemplate">
+                <Label Content="{Binding XPath=@ExpenseType}"/>
+            </DataTemplate>
+            <!-- Amount item template -->
+            <DataTemplate x:Key="amountItemTemplate">
+                <Label Content="{Binding XPath=@ExpenseAmount}"/>
+            </DataTemplate>
+        </Grid.Resources>
         <Grid.Background>
             <ImageBrush ImageSource="watermark.png" />
         </Grid.Background>
@@ -54,22 +65,12 @@
                 <DataGrid  ItemsSource="{Binding XPath=Expense}" ColumnHeaderStyle="{StaticResource columnHeaderStyle}" 
                     AutoGenerateColumns="False" RowHeaderWidth="0" >
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="ExpenseType" />
-                        <DataGridTemplateColumn Header="Amount"  />
+                        <DataGridTemplateColumn Header="ExpenseType" CellTemplate="{StaticResource typeItemTemplate}" />
+                        <DataGridTemplateColumn Header="Amount" CellTemplate="{StaticResource amountItemTemplate}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
         </Grid>
-        <!--Templates to display expense report data-->
-        <Grid.Resources>
-            <!-- Reason item template -->
-            <DataTemplate x:Key="typeItemTemplate">
-                <Label Content="{Binding XPath=@ExpenseType}"/>
-            </DataTemplate>
-            <!-- Amount item template -->
-            <DataTemplate x:Key="amountItemTemplate">
-                <Label Content="{Binding XPath=@ExpenseAmount}"/>
-            </DataTemplate>
-        </Grid.Resources>
+       
     </Grid>
 </Page>
